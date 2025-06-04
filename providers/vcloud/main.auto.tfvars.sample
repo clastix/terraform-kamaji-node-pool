@@ -1,0 +1,39 @@
+# This file contains the configuration for the VMware Cloud Director Kamaji tenant node pool
+
+# Name of the tenant cluster
+tenant_cluster_name = "your-tenant-cluster-name"
+
+# kubeconfig path for accessing the tenant cluster
+tenant_kubeconfig_path = "~/.kube/config"
+
+# Pool configuration
+node_pools = [
+  {
+    name                      = "workers"                # Name of the node pool
+    size                      = 3                        # Number of nodes in the pool
+    node_cpus                 = 2                        # Number of CPUs for each node
+    node_cpu_cores            = 2                        # Number of CPU cores for each node
+    node_memory               = 4096                     # Memory for each node (in MB)
+    node_disk_size            = 50                       # Disk size for each node (in GB)
+    node_disk_storage_profile = "Standard"               # Storage profile for node disks
+    network_name              = "MyNetwork"              # Network name for the node pool
+    network_adapter_type      = "VMXNET3"                # Network adapter type (VMXNET3/E1000)
+    ip_allocation_mode        = "DHCP"                   # IP allocation mode (DHCP/STATIC)
+    template_name             = "ubuntu-24.04-template"  # vApp template name
+  },
+  # additional pools here
+]
+
+# SSH configuration
+ssh_user             = "ubuntu"
+ssh_public_key_path  = "~/.ssh/id_rsa.pub"
+ssh_private_key_path = "~/.ssh/id_rsa"
+
+# VMware Cloud Director infrastructure configuration
+vcd_url                = "https://vcloud.example.com/api"
+vcd_org_name           = "MyOrganization"
+vcd_vdc_name           = "MyVDC"
+vcd_catalog_org_name   = "MyOrganization"
+vcd_catalog_name       = "Templates"
+vcd_allow_insecure     = false  # Set to true only for development with self-signed certificates
+vcd_logging            = false  # Set to true for debugging

@@ -1,0 +1,49 @@
+# Name of the tenant cluster
+tenant_cluster_name = "tenant0"
+
+# kubeconfig file path
+tenant_kubeconfig_path = "/home/clastix/.kube/tenant0.kubeconfig"
+
+# YAKI URL for node bootstrapping
+yaki_url = "https://goyaki.clastix.io"
+
+# List of node pools
+node_pools = [
+  {
+    name            = "your-node-pool-name"
+    size            = 3
+    network_cidr    = "192.168.0.0/24"
+    network_gateway = "192.168.0.1"
+    network_offset  = 10
+    vms_state       = "started"
+    vms_agent       = 1
+    vms_memory      = 2048
+    vms_sockets     = 1
+    vms_cores       = 4
+    vms_vcpus       = 4
+    vms_boot        = "order=scsi0"
+    vms_scsihw      = "virtio-scsi-single"
+    vms_disk_size   = 16
+    vms_template    = "ubuntu-template"
+  },
+]
+
+# Cloud-init user
+ssh_user             = "your-ssh-user"
+ssh_public_key_path  = "~/.ssh/id_rsa.pub"
+ssh_private_key_path = "~/.ssh/id_rsa"
+
+# The DNS resolver name
+nameserver = "8.8.8.8"
+
+# Disk storage in which to place the VM
+storage_disk = "your-storage-disk"
+
+# Network bridge assigned to the VM
+network_bridge = "your-network-bridge"
+network_model  = "virtio"
+
+# Proxmox configuration
+proxmox_host     = "your-proxmox-host"
+proxmox_node     = "your-proxmox-node"
+proxmox_api_url  = "https://your-proxmox-api-url:8006/api2/json"

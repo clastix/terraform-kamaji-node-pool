@@ -1,0 +1,43 @@
+# AWS Configuration
+aws_region = ""                    # AWS region (e.g., "us-east-1", "eu-west-1", "eu-south-1")
+aws_zones  = []                    # List of availability zones (e.g., ["us-east-1a", "us-east-1b"])
+aws_vpc_name = []                  # VPC name filter (e.g., ["my-vpc"])
+
+# SSH Configuration
+ssh_user            = ""           # SSH username (e.g., "ubuntu", "ec2-user")
+ssh_public_key_path = ""           # Path to SSH public key (e.g., "~/.ssh/id_rsa.pub")
+
+# Tenant Cluster Configuration
+tenant_cluster_name    = ""        # Name of the tenant cluster
+tenant_kubeconfig_path = ""        # Path to kubeconfig file (e.g., "~/.kube/config")
+
+# Node Pool Configuration
+node_pools = [
+  {
+    name           = ""             # Name of the node pool (e.g., "default", "workers")
+    size           = 0              # Number of nodes in the pool
+    node_disk_size = 0              # Disk size for each node (in GB)
+    instance_type  = ""             # AWS instance type (e.g., "t3a.medium", "m5.large")
+    ami_id         = ""             # AMI ID for the instances
+    min_size       = 0              # Minimum number of nodes
+    max_size       = 0              # Maximum number of nodes
+    disk_type      = ""             # EBS volume type (gp2, gp3, io1, io2)
+    public         = false          # Whether to assign public IP addresses
+  },
+  # Add more node pools here as needed.
+]
+
+# Example: Find Ubuntu 24.04 LTS AMI ID
+# aws ec2 describe-images --region <your-region> \
+# --owners 099720109477 \
+# --filters "Name=name,Values=ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*" \
+# --query 'Images|sort_by(@,&CreationDate)[-1].ImageId' \
+# --output text
+
+# Tags for AWS resources
+tags = {
+  "ManagedBy"   = ""               # Who manages these resources (e.g., "Terraform", "Clastix")
+  "CreatedBy"   = ""               # What created these resources (e.g., "Terraform")
+  "Environment" = ""               # Environment name (e.g., "dev", "staging", "prod")
+  "Project"     = ""               # Project name (e.g., "Kamaji", "MyProject")
+} 

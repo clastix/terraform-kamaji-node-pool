@@ -1,0 +1,45 @@
+# This file contains the configuration for the vSphere Kamaji tenant node pool
+
+# Name of the tenant cluster
+tenant_cluster_name = "your-tenant-cluster-name"
+
+# kubeconfig path for accessing the tenant cluster
+tenant_kubeconfig_path = "~/.kube/config"
+
+# Pool configuration
+node_pools = [
+  {
+    name            = "your-node-pool-name"  # Name of the node pool
+    size            = 3                      # Number of nodes in the pool
+    node_disk_size  = 24                     # Disk size for each node (in GB)
+    node_cores      = 4                      # Number of CPU cores for each node
+    node_memory     = 8192                   # Memory for each node (in MB)
+    node_guest      = "ubuntu64Guest"        # Guest OS type for each node
+    network_cidr    = "10.9.63.0/24"         # Network CIDR for the node pool
+    network_gateway = "10.9.63.1"            # Network gateway for the node pool
+    network_offset  = 160                    # Network offset for the node pool
+  },
+  # additional pools here
+]
+
+# DNS resolvers
+dns_resolvers = ["8.8.8.8", "8.8.4.4"]
+
+# SSH configuration
+ssh_user             = "ubuntu"
+ssh_public_key_path  = "~/.ssh/id_rsa.pub"
+ssh_private_key_path = "~/.ssh/id_rsa"
+
+# vSphere enterprise license
+vsphere_plus_license = true
+
+# vSphere infrastructure configuration
+vsphere_server               = "your-vsphere-server"
+vsphere_allow_unverified_ssl = true  # Set to false for production with valid certificates
+vsphere_datacenter           = "your-vsphere-datacenter"
+vsphere_compute_cluster      = "your-vsphere-compute-cluster"
+vsphere_datastore            = "your-vsphere-datastore"
+vsphere_resource_pool        = "your-vsphere-resource-pool"
+vsphere_network              = "your-vsphere-network"
+vsphere_content_library      = "your-vsphere-content-library"
+vsphere_content_library_item = "your-vsphere-content-library-item"
