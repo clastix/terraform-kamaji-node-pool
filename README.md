@@ -1,26 +1,26 @@
 # Terraform Kamaji Node Pools
 
-A comprehensive Terraform module collection for creating Kubernetes worker node pools across multiple cloud providers for [Kamaji](https://kamaji.clastix.io), the Control Plane Manaager for Kubernetes.
+A comprehensive Terraform module collection for creating Kubernetes worker node pools across multiple cloud providers for [Kamaji](https://kamaji.clastix.io), the Control Plane Manager for Kubernetes.
 
-The worker nodes created by this project automatically join Kamaji tenant clusters using secure bootstrap tokens and the [`yaki`](https://goyaki.clastix.io/) bootstrap script, providing a complete Hosted Managed Kubernetes solution.
+The machines created by this project automatically will create a secure bootstrap tokens and join the Kamaji tenant clusters using the [`yaki`](https://goyaki.clastix.io/) bootstrap script.
 
 ## Supported Providers
 
 | Provider | Technology | Description | Scaling | Status |
 |----------|------------|-------------|---------|---------|
-| **AWS** | Auto Scaling Groups | EC2 instances with automatic scaling and high availability | Automatic | Available |
-| **Proxmox** | Virtual Machines | Direct VM management on Proxmox VE with flexible resource allocation | Manual | Available |
-| **vSphere** | Virtual Machines | Enterprise-grade VMs on VMware vSphere/vCenter | Manual | Available |
-| **vCloud** | vApps | Multi-tenant VMs on VMware Cloud Director with vApp isolation | Manual | Available |
-| **Azure** | Virtual Machine Scale Sets | Azure VMs with automatic scaling and availability zones | Automatic | Planned |
+| **AWS** | Auto Scaling Groups | EC2 instances with automatic scaling and availability zones | Automatic | Available |
+| **Proxmox** | Virtual Machines | Virtual Machines on Proxmox VE | Manual | Available |
+| **vSphere** | Virtual Machines | Virtual Machines on VMware vSphere/vCenter | Manual | Available |
+| **vCloud** | vApps | Multi-tenant Virtual Machines on VMware Cloud Director with vApp isolation | Manual | Available |
+| **Azure** | Scale Sets | Azure VMs with automatic scaling and availability zones | Automatic | Planned |
 
 
 ## Bootstrap Token Management
 
-This project has a [bootstrap-token module](modules/bootstrap-token/README.md) that automatically connect to the tenant cluster in Kamaji using the provided kubeconfig, generate the bootstrap token, and constructs the join commands using the `yaki` bootstrap script.
+This project has a [bootstrap-token module](modules/bootstrap-token/README.md) that automatically connect to the tenant cluster in Kamaji using the proper `tenant.kubeconfig` file, generate the bootstrap token, constructs the join commands and joining using the `yaki` bootstrap script.
 
 ## Naming Convention
-Assuming you have a tenant called `foo`, and a tenant cluster `tcp-charlie`, you can create several node pools: `application`, `default`, `system` as shown in the following structure:
+Assuming you have a user called `foo`, and a tenant cluster `tcp-charlie`, you can create several node pools: `application`, `default`, `system` as shown in the following structure:
 
 ```sh
 foo
@@ -87,7 +87,7 @@ foo
    # Copy sample configuration
    cp main.auto.tfvars.sample main.auto.tfvars
    
-   # Edit configuration
+   # Edit and fill the configuration
    vim main.auto.tfvars
    ```
 
@@ -121,6 +121,11 @@ foo
    terraform init
    terraform plan
    terraform apply
+   ```
+
+6. **Check**:
+   ```bash
+   kubectl --kubeconfig tenant.kubeconfig get nodes -o wide
    ```
 
 ## License
