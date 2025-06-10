@@ -12,7 +12,7 @@ The machines created by this project automatically will create a secure bootstra
 | **Proxmox** | Virtual Machines | Virtual Machines on Proxmox VE | Manual | Available |
 | **vSphere** | Virtual Machines | Virtual Machines on VMware vSphere/vCenter | Manual | Available |
 | **vCloud** | vApps | Multi-tenant Virtual Machines on VMware Cloud Director with vApp isolation | Manual | Available |
-| **Azure** | Scale Sets | Azure VMs with automatic scaling and availability zones | Automatic | Planned |
+| **Azure** | Virtual Machine Scale Sets | Azure VMs with automatic scaling and availability zones | Automatic | Available |
 
 
 ## Bootstrap Token Management
