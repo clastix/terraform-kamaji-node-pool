@@ -9,11 +9,10 @@ The machines created by this project automatically will create a secure bootstra
 | Provider | Technology | Description | Scaling | Status |
 |----------|------------|-------------|---------|---------|
 | **AWS** | Auto Scaling Groups | EC2 instances with automatic scaling and availability zones | Automatic | Available |
-| **Proxmox** | Virtual Machines | Virtual Machines on Proxmox VE | Manual | Available |
-| **vSphere** | Virtual Machines | Virtual Machines on VMware vSphere/vCenter | Manual | Available |
-| **vCloud** | vApps | Multi-tenant Virtual Machines on VMware Cloud Director with vApp isolation | Manual | Available |
 | **Azure** | Virtual Machine Scale Sets | Azure VMs with automatic scaling and availability zones | Automatic | Available |
-
+| **Proxmox** | Virtual Machines | Virtual Machines on Proxmox VE | Manual | Available |
+| **vCloud** | vApps | Multi-tenant Virtual Machines on VMware Cloud Director with vApp isolation | Manual | Available |
+| **vSphere** | Virtual Machines | Virtual Machines on VMware vSphere/vCenter | Manual | Available |
 
 ## Bootstrap Token Management
 
@@ -43,7 +42,7 @@ foo
 
 ```terraform-kamaji-node-pool/
 ├── modules/
-│   ├── bootstrap-token/          # Shared bootstrap token generation
+│   ├── bootstrap-token/         # Shared bootstrap token generation
 │   ├── aws-node-pool/           # AWS Auto Scaling Groups
 │   ├── azure-node-pool/         # Azure Virtual Machine Scale Sets
 │   ├── proxmox-node-pool/       # Proxmox VE virtual machines
