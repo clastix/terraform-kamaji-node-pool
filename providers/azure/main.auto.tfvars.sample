@@ -1,0 +1,47 @@
+# Azure Configuration
+azure_subscription_id       = ""    # Azure subscription ID (REQUIRED)
+azure_location              = ""    # Azure region (e.g., "eastus", "westeurope", "italynorth")
+azure_resource_group_name   = ""    # Resource group name (e.g., "kamaji")
+azure_vnet_name             = ""    # Virtual network name (e.g., "kamaji-vnet")
+azure_subnet_name           = ""    # Subnet name (e.g., "kamaji-subnet")
+vnet_subnet_address_prefix  = ""    # Subnet CIDR (e.g., "10.10.10.0/24")
+
+# SSH Configuration
+ssh_user            = ""           # SSH username (e.g., "ubuntu", "azureuser")
+ssh_public_key_path = ""           # Path to SSH public key (e.g., "~/.ssh/id_rsa.pub")
+
+# Tenant Cluster Configuration
+tenant_cluster_name    = ""        # Name of the tenant cluster
+tenant_kubeconfig_path = ""        # Path to kubeconfig file (e.g., "~/.kube/config")
+
+# Node Pool Configuration
+node_pools = [
+  {
+    name           = ""             # Name of the node pool (e.g., "default", "workers")
+    size           = 0              # Number of nodes in the pool
+    node_disk_size = 0              # Disk size for each node (in GB)
+    vm_size        = ""             # Azure VM size (e.g., "Standard_D2s_v3", "Standard_D4s_v3")
+    min_size       = 0              # Minimum number of nodes (for autoscaling)
+    max_size       = 0              # Maximum number of nodes (for autoscaling)
+    node_disk_type = ""             # Storage type (Standard_LRS, Premium_LRS)
+    assign_public_ip = false        # Whether to assign public IP addresses
+    enable_autoscaling = false      # Enable CPU-based autoscaling
+    scale_out_cpu_threshold = 0     # CPU threshold percentage to trigger scale out
+    scale_in_cpu_threshold  = 0     # CPU threshold percentage to trigger scale in
+    enable_automatic_instance_repair = false  # Enable automatic instance repair
+    automatic_instance_repair_grace_period = ""  # Grace period (e.g., "PT30M")
+    upgrade_mode = ""               # Upgrade mode (Manual, Automatic, Rolling)
+  },
+  # Add more node pools here as needed.
+]
+
+# Example: List available VM sizes in your region
+# az vm list-sizes --location italynorth --output table
+
+# Tags for Azure resources
+tags = {
+  "ManagedBy"   = ""               # Who manages these resources (e.g., "Terraform", "Clastix")
+  "CreatedBy"   = ""               # What created these resources (e.g., "Terraform")
+  "Environment" = ""               # Environment name (e.g., "dev", "staging", "prod")
+  "Project"     = ""               # Project name (e.g., "Kamaji", "MyProject")
+} 
